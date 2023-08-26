@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=CaesarCipher
+comment0.text=\n\ Contains\ my\ solution\ to\ the\ CaesarCipher\ assignment.\n\n\ @author\ apcarrik\n\ @version\ 8-26-2023\n
+comment1.params=input\ key
+comment1.target=java.lang.String\ encrypt(java.lang.String,\ int)
+comment1.text=\n\ This\ method\ returns\ a\ String\ that\ has\ been\ encrypted\ using\ the\ Caesar\ \n\ Cipher\ algorithm.\ Assume\ that\ all\ the\ alphabetic\ characters\ are\ \n\ uppercase\ letters.\n\n\ @param\ \ \ input\ \ \ String\ representing\ phrase\ to\ encrypt\n\ @param\ \ \ key\ \ \ \ \ int\ representing\ offset\ for\ Caesar\ Cipher\n\ @return\ \ \ \ \ \ \ \ \ \ String\ representing\ encrypted\ phrase\n
+comment2.params=
+comment2.target=void\ testEncrypt()
+comment2.text=\n\ Tests\ method\ encrypt().\n
+comment3.params=
+comment3.target=void\ testCaesar()
+comment3.text=\n\ Tests\ method\ encrypt()\ with\ content\ from\ files.\n
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5

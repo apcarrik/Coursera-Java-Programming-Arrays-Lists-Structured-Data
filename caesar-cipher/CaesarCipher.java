@@ -19,13 +19,22 @@ public class CaesarCipher
     public String encrypt(String input, int key)
     {
         StringBuilder encrypted = new StringBuilder(input);
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String shifted = alphabet.substring(key) + alphabet.substring(0);
+        String SHIFTED = ALPHABET.substring(key) + ALPHABET.substring(0);
         for (int i = 0; i < encrypted.length(); i++) {
             char c = encrypted.charAt(i);
-            int idx = alphabet.indexOf(c);
-            if (idx != -1) {
-                encrypted.setCharAt(i, shifted.charAt(idx));
+            if (Character.isUpperCase(c)) {
+                int IDX = ALPHABET.indexOf(c);
+                if (IDX != -1) {
+                    encrypted.setCharAt(i, SHIFTED.charAt(IDX));
+                }
+            } else {                
+                int idx = alphabet.indexOf(c);
+                if (idx != -1) {
+                    encrypted.setCharAt(i, shifted.charAt(idx));
+                }
             }
         }
         return encrypted.toString();

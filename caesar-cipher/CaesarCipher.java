@@ -142,13 +142,23 @@ public class CaesarCipher
         
     }
     
+    public void quiz() {
+        System.out.println("\nAnswers to quiz questions");
+        System.out.println("5)");
+        System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
+        System.out.println("6)");
+        System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));        
+    }
+    
+    
     public static void main(String[] args){
         System.out.println("\n\n==== main ====");
         CaesarCipher cc = new CaesarCipher();
         
-        cc.testEncrypt();
-        cc.testCaesar();
-        cc.testEncryptTwoKeys();
-        cc.testCaesarTwoKeys();
+        // cc.testEncrypt();
+        // cc.testCaesar();
+        // cc.testEncryptTwoKeys();
+        // cc.testCaesarTwoKeys();
+        cc.quiz();
     }
 }

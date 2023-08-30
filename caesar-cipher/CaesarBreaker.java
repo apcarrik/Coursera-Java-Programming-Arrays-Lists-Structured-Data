@@ -57,6 +57,62 @@ public class CaesarBreaker
         return cc.encrypt(message, 26 - key);
     }
     
+    /**
+     * This method should return a new String that is every other character 
+     * from message starting with the start position.
+     *
+     * @param   message String representing message to return half of
+     * @param   start   int representing which character index to start at
+     * @return          String representing the appropriate part of message
+     */
+    public String halfOfString(String message, int msgIdx) {
+        StringBuilder half = new StringBuilder(Math.floorDiv(message.length()-msgIdx+1,2));
+        for (int i = 0; msgIdx < message.length(); i++) {
+            char c = message.charAt(msgIdx);
+            half.append(c);
+            msgIdx+=2;
+        }
+        return half.toString();
+    }
+    
+    /**
+     * This method attempts to determine the two keys used to encrypt the 
+     * message, prints the two keys, and then returns the decrypted String 
+     * with those two keys.
+     *
+     * @param   encrypted   String representing the encrypted message
+     * @return              String representing the decrypted message
+     */
+    public String decryptTwoKeys(String encrypted) {
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        WordLengths wl = new WordLengths();
+        
+        String half1 = halfOfString(encrypted, 0);
+        int[] counts1 = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        countLetters(half1, alphabet, counts1);
+        int key1 = 0;
+        int maxIdx1 = wl.indexOfMax(counts1);
+        if (maxIdx1 > 4) {
+            key1 = maxIdx1 - 4;
+        } else {
+            key1 = 4 - maxIdx1;
+        }
+        
+        String half2 = halfOfString(encrypted, 1);
+        int[] counts2 = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        countLetters(half1, alphabet, counts2);
+        int key2 = 0;
+        int maxIdx2 = wl.indexOfMax(counts2);
+        if (maxIdx2 > 4) {
+            key2 = maxIdx2 - 4;
+        } else {
+            key2 = 4 - maxIdx2;
+        }
+        
+        CaesarCipher cc = new CaesarCipher();
+        return cc.encryptTwoKeys(encrypted, 26 - key1, 26 - key2);
+    }    
+    
     
     /**
      * Tests method countLetters() with content from files.
@@ -126,12 +182,79 @@ public class CaesarBreaker
         
     }
     
+    /**
+     * Tests method halfOfString().
+     */
+    public void testHalfOfString() {
+        System.out.println("\nTesting halfOfString()");
+        String message = "abcd";
+        int start = 0;
+        String result = halfOfString(message, start);
+        String expected = "ac";        
+        System.out.println("Test passed = " + (result.equals(expected)));
+        
+        start = 1;
+        result = halfOfString(message, start);
+        expected = "bd";        
+        System.out.println("Test passed = " + (result.equals(expected)));
+        
+        message = "abc";
+        start = 0;
+        result = halfOfString(message, start);
+        expected = "ac";        
+        System.out.println("Test passed = " + (result.equals(expected)));
+        
+        start = 1;
+        result = halfOfString(message, start);
+        expected = "b";        
+        System.out.println("Test passed = " + (result.equals(expected)));
+        
+        message = "Qbkm Zgis";
+        start = 0;
+        result = halfOfString(message, start);
+        expected = "Qk gs";        
+        System.out.println("Test passed = " + (result.equals(expected)));
+        
+        start = 1;
+        result = halfOfString(message, start);
+        expected = "bmZi";        
+        System.out.println("Test passed = " + (result.equals(expected)));
+        
+    }
+    
+    
+    /**
+     * Tests method decryptTwoKeys().
+     */
+    public void testDecryptTwoKeys() {
+        System.out.println("\nTesting decryptTwoKeys()");
+        CaesarCipher cc = new CaesarCipher();
+        int testkey1 = 23;
+        int testkey2 = 10;
+        String message = "ABCDEFGHIJKLMNOPQRSTUVWXYZE";
+        String encrypted = cc.encryptTwoKeys(message, testkey1, testkey2);              
+        String decrypted = decryptTwoKeys(message);        
+        System.out.println("Test passed = " + (message.equals(decrypted)));
+        
+        testkey1 = 23;
+        testkey2 = 23;
+        FileResource fr = new FileResource("smallHamlet.txt");
+        message = fr.asString();
+        encrypted = cc.encryptTwoKeys(message, testkey1, testkey2);              
+        decrypted = decryptTwoKeys(message);
+        
+        System.out.println("Test passed = " + (message.equals(decrypted)));
+        
+    }
+    
     public static void main(String[] args){
         System.out.println("\n\n==== main ====");
         CaesarBreaker db = new CaesarBreaker();
         db.testCountLetters();
         db.testIndexOfMax();
         db.testDecrypt();
+        db.testHalfOfString();
+        db.testDecryptTwoKeys();
     }
     
 }

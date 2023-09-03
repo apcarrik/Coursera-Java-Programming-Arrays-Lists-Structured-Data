@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=WordLengths
-comment1.params=fr\ counts
-comment1.target=void\ countWordLengths(edu.duke.FileResource,\ int[])
+comment1.params=filetext\ counts
+comment1.target=void\ countWordLengths(java.lang.String,\ int[])
 comment1.text=\n\ This\ method\ should\ read\ in\ the\ words\ from\ resource\ and\ count\ the\ number\n\ of\ words\ of\ each\ length\ for\ all\ the\ words\ in\ resource,\ storing\ these\ \n\ counts\ in\ the\ array\ counts.\n\n\ @param\ \ \ resource\ \ \ \ FileResource\ representing\ file\ to\ use\n\ @param\ \ \ counts\ \ \ \ \ \ int[]\ representing\ an\ array\ of\ word\ counts\n
 comment2.params=counts
 comment2.target=int\ indexOfMax(int[])

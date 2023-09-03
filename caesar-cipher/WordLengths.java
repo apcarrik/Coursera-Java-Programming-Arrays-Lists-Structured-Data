@@ -17,9 +17,8 @@ public class WordLengths
      * @param   resource    FileResource representing file to use
      * @param   counts      int[] representing an array of word counts
      */
-    public void countWordLengths(FileResource fr, int[] counts) {
+    public void countWordLengths(String filetext, int[] counts) {
         int charCount = 0;
-        String filetext = fr.asString();
         boolean prevNonChar = false;
         for (int i = 0; i<filetext.length(); i++) {
             char c = filetext.charAt(i);
@@ -72,7 +71,8 @@ public class WordLengths
         System.out.println("\nTesting countWordLengths()");
         FileResource fr = new FileResource("smallHamlet.txt");
         int[] counts = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        countWordLengths(fr, counts);
+        String filetext = fr.asString();
+        countWordLengths(filetext, counts);
         int[] expected = new int[]{0,0,2,3,2,1,1,1,2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         for (int i = 0; i < counts.length; i++) {
             if (counts[i] != expected[i]) {                

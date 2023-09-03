@@ -7,6 +7,7 @@
  */
 
 import edu.duke.FileResource;
+import java.util.Arrays;
 
 public class CaesarBreaker
 {
@@ -108,7 +109,7 @@ public class CaesarBreaker
         } else {
             key2 = 4 - maxIdx2;
         }
-        
+        System.out.println("Key1 = " + key1 + ", Key2 = " + key2);
         CaesarCipher cc = new CaesarCipher();
         return cc.encryptTwoKeys(encrypted, 26 - key1, 26 - key2);
     }    
@@ -247,14 +248,57 @@ public class CaesarBreaker
         
     }
     
+    /**
+     * Computes answers for quiz().
+     */
+    public void quiz() {
+        System.out.println("\n4)");        
+        WordLengths wl = new WordLengths();
+        FileResource fr = new FileResource("romeo.txt");
+        String filetext = fr.asString();
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        int[] counts = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        wl.countWordLengths(filetext, counts);
+        System.out.println("counts = " + Arrays.toString(counts));
+        int max = wl.indexOfMax(counts);
+        System.out.println("Most common word length in romeo.txt: " + max);
+        
+        System.out.println("\n5)");        
+        fr = new FileResource("lotsOfWords.txt");
+        filetext = fr.asString();
+        counts = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        wl.countWordLengths(filetext, counts);
+        System.out.println("counts = " + Arrays.toString(counts));
+        max = wl.indexOfMax(counts);
+        System.out.println("Most common word length in lotsOfWords.txt: " + max);
+        
+        System.out.println("\n8)");      
+        CaesarCipher cc = new CaesarCipher();
+        String decrypted = cc.encryptTwoKeys("Top ncmy qkff vi vguv vbg ycpx", 26 - 2, 26 - 20);
+        System.out.println("Decrypted answer: " + decrypted);
+        
+        System.out.println("\n9)");   
+        decrypted = decryptTwoKeys("Akag tjw Xibhr awoa aoee xakex znxag xwko");   
+        System.out.println("Decrypted answer: " + decrypted);
+        
+        System.out.println("\n10) & 11)");    
+        fr = new FileResource("mysteryTwoKeysPractice.txt");
+        String encrypted = fr.asString();
+        decrypted = decryptTwoKeys(encrypted);   
+        System.out.println("Decrypted answer: " + decrypted);
+        
+    }
+    
     public static void main(String[] args){
         System.out.println("\n\n==== main ====");
         CaesarBreaker db = new CaesarBreaker();
-        db.testCountLetters();
-        db.testIndexOfMax();
-        db.testDecrypt();
-        db.testHalfOfString();
-        db.testDecryptTwoKeys();
+        // db.testCountLetters();
+        // db.testIndexOfMax();
+        // db.testDecrypt();
+        // db.testHalfOfString();
+        // db.testDecryptTwoKeys();
+        
+        db.quiz();
     }
     
 }

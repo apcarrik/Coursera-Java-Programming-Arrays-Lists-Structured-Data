@@ -101,7 +101,7 @@ public class CaesarBreaker
         
         String half2 = halfOfString(encrypted, 1);
         int[] counts2 = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-        countLetters(half1, alphabet, counts2);
+        countLetters(half2, alphabet, counts2);
         int key2 = 0;
         int maxIdx2 = wl.indexOfMax(counts2);
         if (maxIdx2 > 4) {
@@ -109,6 +109,8 @@ public class CaesarBreaker
         } else {
             key2 = 4 - maxIdx2;
         }
+        System.out.println("counts1 = " + Arrays.toString(counts1));
+        System.out.println("counts2 = " + Arrays.toString(counts2));
         System.out.println("Key1 = " + key1 + ", Key2 = " + key2);
         CaesarCipher cc = new CaesarCipher();
         return cc.encryptTwoKeys(encrypted, 26 - key1, 26 - key2);
